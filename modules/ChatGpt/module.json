@@ -1,0 +1,17 @@
+{
+    "alias": "chat-gpt",
+    "icon": "fa fa-cog",
+    "version": "1.0.0",
+    "active": 1,
+    "providers": [
+        "Modules\\ChatGpt\\Providers\\Event",
+        "Modules\\ChatGpt\\Providers\\Main"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [],
+    "settings": [],
+    "extra-modules": {}
+}
