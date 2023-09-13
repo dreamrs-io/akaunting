@@ -34,7 +34,9 @@ Akaunting uses [Laravel](http://laravel.com), the best existing PHP framework, a
 * Install Akaunting:
 
 ```bash
-php artisan install --db-name="akaunting" --db-username="root" --db-password="pass" --admin-email="admin@company.com" --admin-password="123456"
+php artisan install --db-name="akaunting" --db-username="root" --db-password="root123!" --admin-email="admin@mail.com" --admin-password="123456"
+
+php artisan install --db-host="127.0.0.1" --db-port="13306" --db-name="akaunting" --db-username="root" --admin-email="admin@mail.com" --admin-password="123456"
 ```
 
 * Create sample data (optional): `php artisan sample-data:seed`
@@ -68,3 +70,6 @@ Please review [our security policy](https://github.com/akaunting/akaunting/secur
 ## License
 
 Akaunting is released under the [GPLv3 license](LICENSE.txt).
+
+## Clear cache
+php artisan optimize:clear

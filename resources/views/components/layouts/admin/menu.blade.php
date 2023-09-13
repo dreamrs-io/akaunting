@@ -61,7 +61,7 @@
         </div>
 
         <div class="group flex flex-col items-center justify-center menu-toggle-buttons">
-            @can('read-notifications')
+            <!-- @can('read-notifications')
             <x-tooltip id="tooltip-notifications" placement="right" message="{{ trans_choice('general.notifications', 2) }}">
                 <button type="button"
                     @class([
@@ -79,13 +79,13 @@
                     @endif
                 </button>
             </x-tooltip>
-            @endcan
+            @endcan -->
 
-            <x-tooltip id="tooltip-search" placement="right" message="{{ trans('general.search') }}">
+            <!-- <x-tooltip id="tooltip-search" placement="right" message="{{ trans('general.search') }}">
                 <button type="button" class="flex items-center menu-button justify-center w-8 h-8 mb-2.5 relative cursor-pointer outline-none">
                     <span id="menu-search-icon" name="search" class="material-icons-outlined text-purple text-2xl pointer-events-none">search</span>
                 </button>
-            </x-tooltip>
+            </x-tooltip> -->
 
             <x-tooltip id="tooltip-new" placement="right" message="{{ trans('general.new') }}">
                 <button type="button" class="add-item menu-button flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles" data-menu="add-new-menu">
@@ -99,11 +99,11 @@
                 </button>
             </x-tooltip>
 
-            <x-tooltip id="tooltip-support" placement="right" message="{{ trans('general.help') }}">
+            <!-- <x-tooltip id="tooltip-support" placement="right" message="{{ trans('general.help') }}">
                 <x-link href="{{ url(trans('header.support_link')) }}" target="_blank" class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles" override="class">
                     <span id="menu-support-icon" class="material-icons-outlined text-purple text-2xl pointer-events-none">support</span>
                 </x-link>
-            </x-tooltip>
+            </x-tooltip> -->
         </div>
 
         <livewire:menu.favorites />
