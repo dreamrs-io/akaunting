@@ -70,6 +70,9 @@ mix
     .js('resources/assets/js/views/settings/settings.js', 'public/js/settings/settings.min.js')
     .js('resources/assets/js/views/settings/taxes.js', 'public/js/settings/taxes.min.js')
 
+    // ChatGpt
+    .js('modules/ChatGpt/Resources/assets/js/chat-gpt.js', 'public/modules/chat-gpt/js/chat-gpt.min.js')
+
     .vue()
 
     .postCss('resources/assets/sass/app.css', 'public/css', [

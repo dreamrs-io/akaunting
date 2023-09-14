@@ -14,17 +14,9 @@ use Illuminate\Support\Facades\Route;
 Route::admin('chat-gpt', function () {
     Route::group(['prefix' => 'main', 'as' => 'main.'], function () {
         Route::resource('/', 'Main');
-        // Route::get('/', 'Settings@edit')->name('edit');
-        // Route::post('/', 'Settings@update')->name('update');
-        // Route::post('get', 'Settings@get')->name('get');
+        Route::get('detail/{id}', 'Main@detail')->name('detail');
+        Route::get('list', 'Main@getList')->name('list');
+        Route::post('send', 'Main@send')->name('send');
         // Route::delete('delete', 'Settings@destroy')->name('delete');
     });
-    // Route::resource('users', 'Auth\Users', ['middleware' => ['dropzone']]);
-    // Route::group(['as' => 'chat-gpt.'], function () {
-    //     Route::get('/index', 'Main@index')->name('index');
-    //     // Route::get('/', 'Settings@edit')->name('edit');
-    //     // Route::post('/', 'Settings@update')->name('update');
-    //     // Route::post('get', 'Settings@get')->name('get');
-    //     // Route::delete('delete', 'Settings@destroy')->name('delete');
-    // });
 });
