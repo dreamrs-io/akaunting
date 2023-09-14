@@ -18,10 +18,11 @@ class CreateChat extends Job implements HasOwner, HasSource, ShouldCreate
     public function handle(): Chat
     {
         \DB::transaction(function () {
+            $parent_id = $this->request->input("parent_id", 0);
             $inputs = [
                 "company_id" => company_id(),
-                "title" => "New chat",
-                "parent_id" => $this->request->input("parent_id", 0),
+                "title" => $parent_id > 0 ? '' : 'New chat',
+                "parent_id" => $parent_id,
                 "content" => $this->request->input("content"),
                 "type" => 0,
             ];

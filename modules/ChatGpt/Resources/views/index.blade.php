@@ -25,11 +25,11 @@
                         <template v-for="item in chat_list">
                             <li class="hover:bg-gray-100">
                                 <div class="flex justify-between border-0 m-0 p-0">
-                                    <div class="flex cursor-pointer"
+                                    <div class="flex-1 pr-2 cursor-pointer truncate"
                                     @click="onSelect(item.id)">
                                         <span v-text="item.title"></span>
                                     </div>
-                                    <span v-text="item.id">.</span>
+                                    <span class="flex w-12" v-text="item.id">.</span>
                                 </div>
                             </li>
                         </template>
