@@ -79,6 +79,7 @@ mix
         require('tailwindcss')
     ])
     .tailwind('./tailwind.config.js')
+    .postCss('modules/ChatGpt/Resources/assets/sass/chat-gpt.css', 'public/css')
 
     if (mix.inProduction()) {
         mix.version()

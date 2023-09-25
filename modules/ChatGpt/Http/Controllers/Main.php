@@ -6,6 +6,7 @@ use App\Abstracts\Http\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\ChatGpt\Jobs\CreateChat;
+use Modules\ChatGpt\Jobs\CallGpt;
 use Modules\ChatGpt\Models\Chat;
 
 class Main extends Controller
@@ -132,6 +133,29 @@ class Main extends Controller
             flash($message)->error()->important();
         }
 
+        return response()->json($response);
+    }
+
+    public function callGpt(Request $request) {
+        $chat = Chat::find($request->input('id'));
+
+        if ($chat) {
+            $response = $this->ajaxDispatch(new CallGpt($chat));
+            if ($response['success']) {
+                $message = "Message sent!!";
+                flash($message)->success();
+            } else {
+                $message = $response['message'];
+                flash($message)->error()->important();
+            }
+        } else {
+            $response = [
+                'success' => false,
+                'error' => true,
+                'data' => null,
+                'message' => 'data not found!',
+            ];
+        }
         return response()->json($response);
     }
 }

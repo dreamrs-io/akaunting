@@ -26,6 +26,8 @@ class Chat extends Migration
 
             $table->index('company_id');
             $table->index('parent_id');
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_general_ci';
         });
     }
 

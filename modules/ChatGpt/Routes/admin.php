@@ -17,6 +17,7 @@ Route::admin('chat-gpt', function () {
         Route::get('detail/{id}', 'Main@detail')->name('detail');
         Route::get('list', 'Main@getList')->name('list');
         Route::post('send', 'Main@send')->name('send');
+        Route::post('call-gpt', 'Main@callGpt')->name('call-gpt');
         // Route::delete('delete', 'Settings@destroy')->name('delete');
     });
 });

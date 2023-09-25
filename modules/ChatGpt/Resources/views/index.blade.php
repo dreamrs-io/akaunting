@@ -1,20 +1,61 @@
-<x-layouts.admin>
-    <x-slot name="title">{{ trans('chat-gpt::general.name') }}</x-slot>
 
-    <x-slot name="favorite"
+<x-layouts.gpt>
+    {{-- <div style="display: none">
+        <x-slot name="title">{{ trans('chat-gpt::general.name') }}</x-slot>
+    </div> --}}
+    
+
+    {{-- <x-slot name="favorite"
         title="{{ trans('chat-gpt::general.name') }}"
         icon="sms"
         route="chat-gpt.main.index"
-    ></x-slot>
+    ></x-slot> --}}
 
-    <x-slot name="buttons">
+    {{-- <x-slot name="buttons">
         <x-link href="{{ route('chat-gpt.main.index') }}" kind="primary" id="index-more-actions-new-item">
             {{ trans('chat-gpt::general.new_chant_btn') }}
         </x-link>
-    </x-slot>
+    </x-slot> --}}
 
     <x-slot name="content">
-        <div class="flex flex-col lg:flex-row mt-12">
+        <div class="bg-gray-100 z-10 transform translate-x-0 transition-color duration-100 border-b">
+            <div class="h-10 flex justify-between px-6 lg:px-10 mx-auto max-w-4xl lg:max-w-[90rem]">
+                <ul class="-ml-3 sm:-ml-5 grid grid-flow-col justify-start items-center">
+                    <li>
+                        <a href="#"><button class="
+                            group px-3 sm:px-5 h-10 uppercase tracking-wider text-xs font-medium
+                            hover:text-red-500
+                            text-red-500
+                        ">ChatGpt</button></a>
+                    </li>
+                </ul>
+                <ul class="-mr-3 sm:-mr-5 grid grid-flow-col justify-end items-center">
+                    <li>
+                        <a href="#settings" target="_self"><button class="
+                            group px-3 sm:px-5 h-10 uppercase tracking-wider text-xs font-medium
+                            hover:text-red-500
+                        ">Chat Mode</button></a>
+                    </li>
+        
+                    <li>
+                        <!-- Switch Container -->
+                        <div class="w-10 h-6 flex items-center bg-gray-300 cursor-pointer rounded-full p-1 duration-300 ease-in-out" 
+                            :class="{ 'bg-green-400': toggleActive}"
+                            @click="onToggleChatMode('{{ route('chat-gpt.main.send')}}')">
+                            
+                            <!-- Switch -->
+                            <div class="bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out" 
+                                :class="{ 'translate-x-4': toggleActive,}"></div>
+                        
+                        </div>
+                        <!-- Switch Container End -->
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <div class="flex flex-row my-2">
             <div class="w-full lg:w-3/12 bg-black-300 text-white-400">
                 <div>
                     <div class="flex items-center justify-between text-xl text-black-800 border-b p-2">
@@ -47,12 +88,12 @@
                                     <x-form.section.head title="{{ trans('chat-gpt::general.gpt_model_default') }}" description="" />
                                 </x-slot>
                                 <x-slot name="foot">
-                                    <div>
+                                    <div class="cursor-pointer" @click="scrollDown()">
                                         #<span v-text="chat.id">...</span> |
                                         PId: <span v-text="chat.parent_id">...</span> |
                                         Loading: <span v-text="form.loading">...</span>
                                     </div>
-                                    <div class="w-full" style="height: 60vh">
+                                    <div ref="chat_container" class="w-full overflow-y-auto scroll-smooth" style="height: 60vh">
                                         <ul class="space-y-2 my-3">
                                             <template v-for="msg in chat_history">
                                             <li class="border-b p-2" :class="{'bg-blue-200': msg.type > 0}">
@@ -62,7 +103,7 @@
                                                         <span v-if="msg.type <= 0">You</span>
                                                         <span v-if="msg.type > 0">ChatGpt</span>
                                                     </div>
-                                                    <div v-text="msg.content"></div>
+                                                    <div class="break-all" v-text="msg.content"></div>
                                                 </div>
                                             </li>
                                             </template>

@@ -451,6 +451,12 @@
 .dz-import-width {
   width: 120%;
 }
+.gpt-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 /*
 ! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
 */

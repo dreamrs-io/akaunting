@@ -7,6 +7,7 @@ use App\Interfaces\Job\HasOwner;
 use App\Interfaces\Job\HasSource;
 use App\Interfaces\Job\ShouldCreate;
 use Modules\ChatGpt\Models\Chat;
+use Illuminate\Support\Str;
 
 class CreateChat extends Job implements HasOwner, HasSource, ShouldCreate
 {
@@ -19,14 +20,15 @@ class CreateChat extends Job implements HasOwner, HasSource, ShouldCreate
     {
         \DB::transaction(function () {
             $parent_id = $this->request->input("parent_id", 0);
-            $inputs = [
+            $content = $this->request->input("content");
+            $data = [
                 "company_id" => company_id(),
-                "title" => $parent_id > 0 ? '' : 'New chat',
+                "title" => $parent_id > 0 ? '' : Str::substr($content, 0, 20),
                 "parent_id" => $parent_id,
-                "content" => $this->request->input("content"),
+                "content" => $content,
                 "type" => 0,
             ];
-            $this->model = Chat::create($inputs);
+            $this->model = Chat::create($data);
 
             // Upload picture
             // if ($this->request->file('picture')) {
