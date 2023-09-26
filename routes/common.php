@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['permission:read-admin-panel']], function () {
         Route::group(['middleware' => ['menu.admin']], function () {
             Route::get('/', 'Common\Dashboards@show')->name('dashboard');
+            Route::get('/chat', 'Common\Chat@index')->name('chat');
         });
 
         Route::get('wizard', 'Wizard\Companies@edit')->name('wizard.edit');

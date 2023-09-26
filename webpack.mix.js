@@ -44,6 +44,7 @@ mix
 
     // Common
     .js('resources/assets/js/views/common/contacts.js', 'public/js/common/contacts.min.js')
+    .js('resources/assets/js/views/common/chat.js', 'public/js/common/chat.min.js')
     .js('resources/assets/js/views/common/companies.js', 'public/js/common/companies.min.js')
     .js('resources/assets/js/views/common/dashboards.js', 'public/js/common/dashboards.min.js')
     .js('resources/assets/js/views/common/documents.js', 'public/js/common/documents.min.js')

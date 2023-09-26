@@ -26,6 +26,7 @@ import AkauntingSlider from './../components/AkauntingSlider';
 import AkauntingColor from './../components/AkauntingColor';
 import AkauntingImport from './../components/AkauntingImport';
 import CardForm from './../components/CreditCard/CardForm';
+import AkauntingChat from './../components/AkauntingChat';
 
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
@@ -58,6 +59,7 @@ var BreakException = {};
 
 export default {
     components: {
+        AkauntingChat,
         AkauntingDropzoneFileUpload,
         AkauntingContactCard,
         AkauntingCompanyEdit,
