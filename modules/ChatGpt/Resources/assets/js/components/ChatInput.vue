@@ -1,16 +1,49 @@
 <template>
     <div class="fixed bottom-16  md:left-20 lg:left-40 w-full  ">
-        <div class='px-8 relative max-w-4xl mx-auto p-4   '>
-            <span class="material-icons text-gray-400 ml-3 text-2xl absolute mt-4">add_circle</span>
-            <input class='inp shad' placeholder='Send a message' />
+        <div class='px-8 relative max-w-4xl mx-auto p-4'>
+            <div v-if="aiResponseLoading" class="absolute right-10 mt-3">
+                <ai-loader></ai-loader>
+            </div>
+            <span class="material-icons text-gray-400 ml-3 text-2xl absolute mt-4" :class="{'text-purple-500':chatInput.length>0}" >add_circle</span>
+            <input :disabled="aiResponseLoading" v-model="chatInput"  class='inp shad' placeholder='Send a message' @keyup.enter="sendchat" />
         </div>
+        
     </div>
 </template>
 
 
 <script>
+
+import AiLoader from './AiLoader.vue'
 export default {
-    methods: {}
+    components:{
+        'ai-loader' :AiLoader
+    },
+
+
+
+
+    computed: {
+    aiResponseLoading(){
+            return this.$store.state.aiResponseLoading
+    },
+    chatInput: {
+      get() {
+        return this.$store.state.chatInput;
+      },
+      set(value) {
+        this.$store.commit('setChatInput', value);
+      },
+    },
+  },
+  methods: {
+    sendchat(){
+        if (!this.chatInput.length>0){return}
+        this.$store.dispatch('sendMessage');
+    }
+
+  },
+    
 }
 </script>
 

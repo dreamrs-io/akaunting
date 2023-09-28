@@ -35359,6 +35359,9 @@ button, input, optgroup, select, textarea{
   --tw-bg-opacity: 1;
   background-color: rgb(30 33 41 / var(--tw-bg-opacity));
 }
+.bg-\[\#414250a1\]{
+  background-color: #414250a1;
+}
 .bg-\[\#dee1e4\]{
   --tw-bg-opacity: 1;
   background-color: rgb(222 225 228 / var(--tw-bg-opacity));
@@ -69425,6 +69428,11 @@ body{
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+:is(.dark .dark\:text-gray-600){
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
 :is(.dark .dark\:hover\:bg-gray-700:hover){
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
@@ -69532,6 +69540,10 @@ body{
 
   .sm\:mt-auto{
     margin-top: auto;
+  }
+
+  .sm\:mb-8{
+    margin-bottom: 2rem;
   }
 
   .sm\:block{
@@ -69814,6 +69826,14 @@ body{
     margin-top: auto;
   }
 
+  .md\:mb-20{
+    margin-bottom: 5rem;
+  }
+
+  .md\:mb-16{
+    margin-bottom: 4rem;
+  }
+
   .md\:w-6\/12{
     width: 50%;
   }
@@ -69939,6 +69959,10 @@ body{
 
   .lg\:mt-8{
     margin-top: 2rem;
+  }
+
+  .lg\:mb-8{
+    margin-bottom: 2rem;
   }
 
   .lg\:block{

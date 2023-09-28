@@ -1,10 +1,9 @@
 <template>
-    <div>
-      <sidebar></sidebar>
-      <chat></chat>
-      <!-- <welcome></welcome> -->
-    </div>
-
+  <div>
+    <sidebar></sidebar>
+    <welcome v-if="isWelcome"></welcome>
+    <chat v-else></chat>
+  </div>
 </template>
 
 
@@ -16,10 +15,14 @@ import ChatContainer from '../components/ChatContainer.vue';
 import Welcome from '../components/Welcome.vue';
 export default {
   components: {
-  
-  'sidebar': SideBar,
-  'chat': ChatContainer,
-  'welcome':Welcome
-}
+    'sidebar': SideBar,
+    'chat': ChatContainer,
+    'welcome': Welcome
+  },
+  computed: {
+    isWelcome() {
+      return this.$store.state.welcome;
+    },
+  },
 }
 </script>

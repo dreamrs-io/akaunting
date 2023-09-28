@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <h3 class="text-4xl font-extrabold text-gray-400 text-center mt-10 md:mt-auto">Welcome</h3>
-                <div class="grid md:grid-cols-2 mt-8  sm:mt-auto lg:mb-6 md:mb-10 md:px-20 gap-4">
+                <div class="grid md:grid-cols-2 mt-8  sm:mt-auto sm:mb-8 lg:mb-8 md:mb-10 md:px-20 gap-4">
                     <div v-for="(item, index) in demoQuestions" :key="index" class="p-4 text-sm font-bold border border-black rounded-md cursor-pointer ">
                         <p>{{ item }}</p>
                     </div>
