@@ -1,5 +1,5 @@
 <template>
-     <div class='flex flex-col gap-4 h-full '>
+     <div class='flex flex-col gap-4 h-full max-w-4xl mx-auto '>
         <div v-for="(message, index) in chatHistory" :key="index">
             <div class='flex gap-4 items-start animate-pulse  '>
                 <div class="h-10 w-10 flex-shrink-0 items-center mb-1 "

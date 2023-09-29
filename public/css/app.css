@@ -9215,6 +9215,21 @@ button, input, optgroup, select, textarea{
 .w-screen{
   width: 100vw;
 }
+.w-\[500px\]{
+  width: 500px;
+}
+.w-\[1000px\]{
+  width: 1000px;
+}
+.w-\[2000px\]{
+  width: 2000px;
+}
+.w-\[3000px\]{
+  width: 3000px;
+}
+.w-\[5000px\]{
+  width: 5000px;
+}
 .min-w-0{
   min-width: 0px;
 }
@@ -36874,6 +36889,17 @@ button, input, optgroup, select, textarea{
 .bg-zinc-950{
   --tw-bg-opacity: 1;
   background-color: rgb(9 9 11 / var(--tw-bg-opacity));
+}
+.bg-\[\]{
+  background-color: ;
+}
+.bg-\[\#414250\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(65 66 80 / var(--tw-bg-opacity));
+}
+.bg-\[\#f7f7f8\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 247 248 / var(--tw-bg-opacity));
 }
 .bg-opacity-0{
   --tw-bg-opacity: 0;
@@ -69514,6 +69540,10 @@ body{
     margin-bottom: 1.25rem;
   }
 
+  .sm\:mb-8{
+    margin-bottom: 2rem;
+  }
+
   .sm\:ml-64{
     margin-left: 16rem;
   }
@@ -69540,10 +69570,6 @@ body{
 
   .sm\:mt-auto{
     margin-top: auto;
-  }
-
-  .sm\:mb-8{
-    margin-bottom: 2rem;
   }
 
   .sm\:block{
@@ -69818,6 +69844,10 @@ body{
     left: 5rem;
   }
 
+  .md\:left-16{
+    left: 4rem;
+  }
+
   .md\:mb-10{
     margin-bottom: 2.5rem;
   }
@@ -69826,16 +69856,18 @@ body{
     margin-top: auto;
   }
 
-  .md\:mb-20{
-    margin-bottom: 5rem;
-  }
-
-  .md\:mb-16{
-    margin-bottom: 4rem;
+  .md\:ml-64{
+    margin-left: 16rem;
   }
 
   .md\:w-6\/12{
     width: 50%;
+  }
+
+  .md\:translate-x-0{
+    --tw-translate-x: 0px;
+    -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .md\:grid-cols-2{
@@ -69893,6 +69925,14 @@ body{
     top: 1.75rem;
   }
 
+  .lg\:left-36{
+    left: 9rem;
+  }
+
+  .lg\:left-32{
+    left: 8rem;
+  }
+
   .lg\:col-span-5{
     grid-column: span 5 / span 5;
   }
@@ -69929,8 +69969,8 @@ body{
     margin-bottom: 0px;
   }
 
-  .lg\:mb-6{
-    margin-bottom: 1.5rem;
+  .lg\:mb-8{
+    margin-bottom: 2rem;
   }
 
   .lg\:mt-0{
@@ -69959,10 +69999,6 @@ body{
 
   .lg\:mt-8{
     margin-top: 2rem;
-  }
-
-  .lg\:mb-8{
-    margin-bottom: 2rem;
   }
 
   .lg\:block{

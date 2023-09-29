@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getChatHistory, getChatList } from './api';
+import { getChatHistory, getChatList, sendMessage, updateChat } from './api';
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
@@ -21,6 +21,9 @@ export default new Vuex.Store({
     setChatList(state, chatList) {
       state.chatList = chatList;
     },
+    appendChatList(state,chatList){
+      state.chatList = [...state.chatList, ...chatList];
+    },
 
     setChatListLoading(state, isLoading) {
       state.chatListLoading = isLoading;
@@ -28,6 +31,9 @@ export default new Vuex.Store({
 
     setChatHistory(state,chatHistory){
       state.chatHistory=chatHistory
+    },
+    appendChatHistory(state,chatHistory){
+      state.chatHistory=[...state.chatHistory,...chatHistory]
     },
 
     setChatHistoryLoading(state,isLoading){
@@ -48,8 +54,16 @@ export default new Vuex.Store({
 
     setAiResponseLoading(state,value){
       state.aiResponseLoading=value
+    },
+    newChat(state){
+      state.chatInput = '';
+      state.welcome = true;
+      state.chatHistory = [];
+      state.chatHistoryLoading = false;
+      state.currentChatId = '';
+      state.aiResponseLoading = false;
     }
-  },
+    },
   actions: {
     async fetchChatList({ commit }) {
       commit('setChatListLoading', true)
@@ -60,26 +74,53 @@ export default new Vuex.Store({
     async fetchChatHistory({ commit },chatId) {
       commit('setChatHistory', [])
       commit('setWelcome', false)
+      commit('setAiResponseLoading',false)
       commit('setChatHistoryLoading', true)
+      commit('setCurrentChatId',chatId)
       const res = await getChatHistory(chatId);
       commit('setChatHistory', res.chatHistory[0].messages)
-      commit('setCurrentChatId',res.chatHistory[0]._id)
       commit('setChatHistoryLoading', false)
     },
-    async sendMessage({commit}){
+    async sendNewChat({commit}){
       commit('setWelcome', false);
-    let  chatHistoryObject = [ 
+      let  chatHistory = [ 
+            {
+              "type": "Human",
+              "content": this.state.chatInput,
+            }
+        ]
+      commit('setChatHistory',chatHistory)
+      commit('setAiResponseLoading',true)
+      let input =  this.state.chatInput
+      commit('setChatInput','')
+      const res = await sendMessage(input)
+      commit('setChatHistory', res.chatHistory.messages)
+      commit('appendChatList',[res.chatHistory])
+      commit('setCurrentChatId',res.chatHistory._id)
+      commit('setAiResponseLoading',false)
+    },
+    async sendChat({commit}){
+      let  chatHistory = [ 
         {
           "type": "Human",
           "content": this.state.chatInput,
-        },
-      ]
-      commit('setChatHistory',chatHistoryObject)
+        }
+    ]
+      commit('appendChatHistory',chatHistory)
       commit('setAiResponseLoading',true)
-
+      let input =  this.state.chatInput
       commit('setChatInput','')
-
+      const res = await updateChat(this.state.currentChatId,input)
+      chatHistory = [
+        {
+          "type": "Ai",
+          "content": res.message,
+        }
+      ]
+      commit('appendChatHistory',chatHistory)
+      commit('setAiResponseLoading',false)
     }
+
   },
 });
 

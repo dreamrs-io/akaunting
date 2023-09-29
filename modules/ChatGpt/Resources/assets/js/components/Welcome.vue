@@ -1,6 +1,6 @@
 <template>
     <div class=''>
-        <div class="p-4 sm:ml-64 h-[88vh]">
+        <div class="p-4 md:ml-64 h-[88vh]">
             <div class="p-4 rounded-lg dark:border-gray-700 max-w-4xl mx-auto h-full flex flex-col ">
                 <div class="flex justify-center">
                     <div class="p-3 bg-[#dee1e4] flex gap-4 rounded-md">
