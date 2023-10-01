@@ -10,8 +10,9 @@
                 </div>
                 <h3 class="text-4xl font-extrabold text-gray-400 text-center mt-10 md:mt-auto">Welcome</h3>
                 <div class="grid md:grid-cols-2 mt-8  sm:mt-auto sm:mb-8 lg:mb-8 md:mb-10 md:px-20 gap-4">
-                    <div v-for="(item, index) in demoQuestions" :key="index" class="p-4 text-sm font-bold border border-black rounded-md cursor-pointer ">
+                    <div @click="setInput(index)" v-for="(item, index) in demoQuestions" :key="index" class="flex justify-between items-center p-4 text-xs font-bold border border-black rounded-md cursor-pointer group hover:bg-[#ececf1] duration-300 ">
                         <p>{{ item }}</p>
+                        <span class="material-icons duration-300 text-white group-hover:text-[#1e2129]">send</span>
                     </div>
                 </div>
 
@@ -44,6 +45,10 @@ export default{
     methods: {
         changeConversationType(value){
             this.conversationType=value
+        },
+        setInput(i){
+            this.$store.commit('setChatInput', this.demoQuestions[i]);
+            this.$store.dispatch('sendNewChat');
         }
         
     },

@@ -21,6 +21,7 @@ class Main extends Controller
     {    
         // ALL the 'chats' on chat Server are based on userId we will encrpt that and pass it to view
         $userId= encrypt(user()->id);
+        //Expiration time can be added within this encrypted text which ensures even if the text is hacked its useless afeter some time 
         return $this->response('chat-gpt::index',compact('userId'));
     }
 

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getChatHistory, getChatList, sendMessage, updateChat } from './api';
+import { delChat, getChatHistory, getChatList, sendMessage, updateChat } from './api';
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
@@ -20,13 +20,18 @@ export default new Vuex.Store({
   },
   mutations: {
     setUserId(state, userId) {
+      const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toUTCString();
+      document.cookie = `user-chat-token=${userId}; expires=${expires}; path=/`;
       state.userId = userId; 
     },
     setChatList(state, chatList) {
       state.chatList = chatList;
     },
     appendChatList(state,chatList){
-      state.chatList = [...state.chatList, ...chatList];
+      state.chatList = [...chatList,...state.chatList];
+    },
+    removeChatList(state,chatId){
+      state.chatList = state.chatList.filter(chat => chat._id !== chatId);
     },
 
     setChatListLoading(state, isLoading) {
@@ -104,6 +109,7 @@ export default new Vuex.Store({
       commit('setAiResponseLoading',false)
     },
     async sendChat({commit}){
+      commit('setWelcome', false);
       let  chatHistory = [ 
         {
           "type": "Human",
@@ -123,8 +129,13 @@ export default new Vuex.Store({
       ]
       commit('appendChatHistory',chatHistory)
       commit('setAiResponseLoading',false)
+    },
+    async deleteChat({commit},chatId){
+      await delChat(chatId);
+      commit('newChat');
+      commit('removeChatList',chatId);
+      commit('setWelcome', true);
     }
-
   },
 });
 

@@ -2,6 +2,7 @@ import axios from "axios";
 
 const client = axios.create({
     baseURL: `http://localhost:3000/api`,
+    withCredentials: true, 
 
 })
 
@@ -46,10 +47,20 @@ const updateChat = async (id, message) => {
     }
 
 }
+const delChat = async (id) => {
+
+    try {
+        const response = await client.delete('/chat/'+id)
+        return response.data
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 export {
     sendMessage,
     getChatList,
     getChatHistory,
-    updateChat
+    updateChat,
+    delChat
 };
