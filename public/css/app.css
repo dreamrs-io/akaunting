@@ -9215,21 +9215,6 @@ button, input, optgroup, select, textarea{
 .w-screen{
   width: 100vw;
 }
-.w-\[500px\]{
-  width: 500px;
-}
-.w-\[1000px\]{
-  width: 1000px;
-}
-.w-\[2000px\]{
-  width: 2000px;
-}
-.w-\[3000px\]{
-  width: 3000px;
-}
-.w-\[5000px\]{
-  width: 5000px;
-}
 .min-w-0{
   min-width: 0px;
 }
@@ -35374,6 +35359,10 @@ button, input, optgroup, select, textarea{
   --tw-bg-opacity: 1;
   background-color: rgb(30 33 41 / var(--tw-bg-opacity));
 }
+.bg-\[\#414250\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(65 66 80 / var(--tw-bg-opacity));
+}
 .bg-\[\#414250a1\]{
   background-color: #414250a1;
 }
@@ -36889,17 +36878,6 @@ button, input, optgroup, select, textarea{
 .bg-zinc-950{
   --tw-bg-opacity: 1;
   background-color: rgb(9 9 11 / var(--tw-bg-opacity));
-}
-.bg-\[\]{
-  background-color: ;
-}
-.bg-\[\#414250\]{
-  --tw-bg-opacity: 1;
-  background-color: rgb(65 66 80 / var(--tw-bg-opacity));
-}
-.bg-\[\#f7f7f8\]{
-  --tw-bg-opacity: 1;
-  background-color: rgb(247 247 248 / var(--tw-bg-opacity));
 }
 .bg-opacity-0{
   --tw-bg-opacity: 0;
@@ -69544,10 +69522,6 @@ body{
     margin-bottom: 2rem;
   }
 
-  .sm\:ml-64{
-    margin-left: 16rem;
-  }
-
   .sm\:ml-8{
     margin-left: 2rem;
   }
@@ -69658,12 +69632,6 @@ body{
     -webkit-box-flex: 1;
         -ms-flex: 1 1 0%;
             flex: 1 1 0%;
-  }
-
-  .sm\:translate-x-0{
-    --tw-translate-x: 0px;
-    -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .sm\:grid-cols-10{
@@ -69840,10 +69808,6 @@ body{
 
 @media (min-width: 768px){
 
-  .md\:left-20{
-    left: 5rem;
-  }
-
   .md\:left-16{
     left: 4rem;
   }
@@ -69852,12 +69816,12 @@ body{
     margin-bottom: 2.5rem;
   }
 
-  .md\:mt-auto{
-    margin-top: auto;
-  }
-
   .md\:ml-64{
     margin-left: 16rem;
+  }
+
+  .md\:mt-auto{
+    margin-top: auto;
   }
 
   .md\:w-6\/12{
@@ -69905,8 +69869,8 @@ body{
     bottom: 0.625rem;
   }
 
-  .lg\:left-40{
-    left: 10rem;
+  .lg\:left-32{
+    left: 8rem;
   }
 
   .lg\:right-0{
@@ -69923,14 +69887,6 @@ body{
 
   .lg\:top-7{
     top: 1.75rem;
-  }
-
-  .lg\:left-36{
-    left: 9rem;
-  }
-
-  .lg\:left-32{
-    left: 8rem;
   }
 
   .lg\:col-span-5{

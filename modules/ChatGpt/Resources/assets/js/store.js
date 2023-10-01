@@ -4,6 +4,7 @@ import { getChatHistory, getChatList, sendMessage, updateChat } from './api';
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
+    userId: null,
     chatInput: '',
     welcome:true,
 
@@ -13,11 +14,14 @@ export default new Vuex.Store({
     chatHistory: [],
     chatHistoryLoading: false,
     currentChatId: '',
-
+    
     aiResponseLoading:false
 
   },
   mutations: {
+    setUserId(state, userId) {
+      state.userId = userId; 
+    },
     setChatList(state, chatList) {
       state.chatList = chatList;
     },

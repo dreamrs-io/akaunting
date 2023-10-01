@@ -5,6 +5,7 @@ namespace Modules\ChatGpt\Http\Controllers;
 use App\Abstracts\Http\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Traits\Users;
 use Modules\ChatGpt\Jobs\CreateChat;
 use Modules\ChatGpt\Jobs\CallGpt;
 use Modules\ChatGpt\Models\Chat;
@@ -18,10 +19,9 @@ class Main extends Controller
      */
     public function index()
     {    
-        // Encrypted token which will be used on frontend when calling the chat-server
-
-
-        return $this->response('chat-gpt::index'); //compact('chatHistory')
+        // ALL the 'chats' on chat Server are based on userId we will encrpt that and pass it to view
+        $userId= encrypt(user()->id);
+        return $this->response('chat-gpt::index',compact('userId'));
     }
 
     // All the below function will be performed By chat-server
