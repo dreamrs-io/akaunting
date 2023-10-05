@@ -24,6 +24,10 @@ export default new Vuex.Store({
       document.cookie = `user-chat-token=${userId}; expires=${expires}; path=/`;
       state.userId = userId; 
     },
+    setAuthCookie(password){
+      const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toUTCString();
+      document.cookie = `auth-token=${password}; expires=${expires}; path=/`;
+    },
     setChatList(state, chatList) {
       state.chatList = chatList;
     },

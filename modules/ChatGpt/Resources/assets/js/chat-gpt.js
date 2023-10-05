@@ -7,9 +7,10 @@
 require('../../../../../resources/assets/js/bootstrap');
 
 import Vue from 'vue';
-
 import AppLayout from './layout/AppLayout'
 import store from './store';
+
+
 
 const app = new Vue({
     el: '#app',
