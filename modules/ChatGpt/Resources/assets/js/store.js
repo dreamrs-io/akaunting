@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { delChat, getChatHistory, getChatList, sendMessage, updateChat } from './api';
-import { isCookieSet } from './helper';
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
@@ -14,30 +13,12 @@ export default new Vuex.Store({
     currentChatId: '',
     aiResponseLoading:false,
 
-    authCookie:false,
-    userEmail:''
 
   },
   mutations: {
-    setUserId(state, payload) {
+    setUserId(state,userId) {
       const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toUTCString();
-      document.cookie = `user-chat-token=${payload.userId}; expires=${expires}; path=/`;
-      state.userEmail=payload.userEmail
-    },
-    isAuthCookieSet(state){
-      if (!isCookieSet('user-session-token')){
-        state.authCookie=false;
-      }else{
-        state.authCookie=true;
-      }
-
-      
-    },
-    setAuthCookie(state,authToken){
-      const expires = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toUTCString();
-      console.log(authToken)
-      document.cookie = `user-session-token=${authToken}; expires=${expires}; path=/`;
-      this.state.authCookie=true
+      document.cookie = `user-chat-token=${userId}; expires=${expires}; path=/`;
     },
     setChatList(state, chatList) {
       state.chatList = chatList;

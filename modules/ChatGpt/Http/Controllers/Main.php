@@ -5,6 +5,7 @@ namespace Modules\ChatGpt\Http\Controllers;
 use App\Abstracts\Http\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 use App\Traits\Users;
 use Modules\ChatGpt\Jobs\CreateChat;
 use Modules\ChatGpt\Jobs\CallGpt;
@@ -17,13 +18,15 @@ class Main extends Controller
      *
      * @return Response
      */
-    public function index()
-    {    
+    public function index(Request $request)
+    {   
         // ALL the 'chats' on chat Server are based on userId we will encrpt that and pass it to view
-        $userId= encrypt(user()->id);
-        $userEmail= user()->email;
-        //Expiration time can be added within this encrypted text which ensures even if the text is hacked its useless afeter some time 
-        return $this->response('chat-gpt::index',compact('userId','userEmail'));
+        // getiing Id, Email and Password and Base64Encoding Them and Encryptiong Them
+        $userPassword = Session::get('password');
+        $basicAuthToken= 'Basic '.base64_encode(user()->email.':'.$userPassword);
+        $userChatToken=encrypt(json_encode(['id'=>user()->id,'BasicApiAuthToken'=>$basicAuthToken]),false);
+        
+        return $this->response('chat-gpt::index',compact('userChatToken'));
     }
 
     // All the below function will be performed By chat-server

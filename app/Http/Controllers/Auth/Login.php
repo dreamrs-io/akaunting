@@ -6,6 +6,7 @@ use App\Abstracts\Http\Controller;
 use App\Http\Requests\Auth\Login as Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 
 class Login extends Controller
 {
@@ -49,6 +50,10 @@ class Login extends Controller
 
         // Get user object
         $user = user();
+
+        // Setting Password In Session 
+        Session::put('password', $request->password);
+
 
         // Check if user is enabled
         if (! $user->enabled) {
