@@ -47660,16 +47660,6 @@ button, input, optgroup, select, textarea{
   --tw-text-opacity: 1;
   color: rgb(9 9 11 / var(--tw-text-opacity));
 }
-.text-\[\]{
-  color: ;
-}
-.text-\[\#\]{
-  color: #;
-}
-.text-\[\#1e2129\]{
-  --tw-text-opacity: 1;
-  color: rgb(30 33 41 / var(--tw-text-opacity));
-}
 .text-opacity-0{
   --tw-text-opacity: 0;
 }
@@ -67040,6 +67030,11 @@ body{
   background-color: rgb(65 66 80 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#ececf1\]:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 236 241 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-blue-700:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(0 83 125 / var(--tw-bg-opacity));
@@ -67142,15 +67137,6 @@ body{
 .hover\:bg-wisteria-600:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(101 99 140 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-\[\]:hover{
-  background-color: ;
-}
-
-.hover\:bg-\[\#ececf1\]:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 236 241 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-opacity-100:hover{
@@ -67376,6 +67362,11 @@ body{
   background-size: 100% 2px;
 }
 
+.group:hover .group-hover\:text-\[\#1e2129\]{
+  --tw-text-opacity: 1;
+  color: rgb(30 33 41 / var(--tw-text-opacity));
+}
+
 .group:hover .group-hover\:text-gray-500{
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -67389,11 +67380,6 @@ body{
 .group:hover .group-hover\:text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.group:hover .group-hover\:text-\[\#1e2129\]{
-  --tw-text-opacity: 1;
-  color: rgb(30 33 41 / var(--tw-text-opacity));
 }
 
 .group\/tooltip:hover .group-hover\/tooltip\:opacity-100{
