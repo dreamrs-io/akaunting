@@ -4,6 +4,7 @@ import { delChat, getChatHistory, getChatList, sendMessage, updateChat } from '.
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
+    userChatToken:'',
     chatInput: '',
     welcome:true,
     chatList: [],
@@ -17,8 +18,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setUserId(state,userId) {
-      const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toUTCString();
-      document.cookie = `user-chat-token=${userId}; expires=${expires}; path=/; samesite=None; `;
+      state.userChatToken = userId
     },
     setChatList(state, chatList) {
       state.chatList = chatList;
