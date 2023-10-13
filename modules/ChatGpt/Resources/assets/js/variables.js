@@ -1,2 +1,2 @@
-export const chatApiUrl = 'http://localhost:3000/api';
-export const  apiUrl = 'http://localhost:8000/api';
+export const chatApiUrl = 'https://dev.peakreliancecpa.com/api/';
+export const apiUrl = 'https://akaunting.peakreliancecpa.com/api';
