@@ -18,7 +18,7 @@ export default new Vuex.Store({
   mutations: {
     setUserId(state,userId) {
       const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toUTCString();
-      document.cookie = `user-chat-token=${userId}; expires=${expires}; path=/`;
+      document.cookie = `user-chat-token=${userId}; expires=${expires}; path=/; samesite=None; `;
     },
     setChatList(state, chatList) {
       state.chatList = chatList;
