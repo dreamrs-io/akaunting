@@ -1,11 +1,20 @@
 import axios from "axios";
 import { chatApiUrl } from "./variables";
+import store from './store';
 
 const client = axios.create({
     baseURL: chatApiUrl,
-    withCredentials: true, 
+});
 
-})
+client.interceptors.request.use(
+    (config) => {
+      config.headers.Authorization = store.state.userChatToken;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
 const sendMessage = async (message) => {
     try {
