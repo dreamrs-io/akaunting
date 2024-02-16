@@ -6,6 +6,7 @@
 
 
 <script type="text/javascript" src="{{ asset('public/modules/chat-gpt/js/chat-gpt.min.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset('modules/ChatGpt/Resources/assets/js/chat-gpt.min.js') }}"></script> --}}
 
 
 

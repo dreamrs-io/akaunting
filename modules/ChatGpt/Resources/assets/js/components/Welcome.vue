@@ -35,10 +35,10 @@ export default{
       return {
         conversationType: 'conversation',
         demoQuestions:[
-            'Genarate Financial Statement For this Month',
-            'Genarate A New Invoice For Customer',
-            'Record A New Income',
-            'Create A Sales Report For this Year'
+            'Show me the profit and loss of 2023',
+            'How much does client Kallie Haley owe us in total?',
+            'Show me the recent transactions from my bank',
+            'What\'s the total revenue for this year so far?'
         ]
       };
     },

@@ -8,11 +8,11 @@
                 <chat-loader v-if="chatHistoryLoading"></chat-loader>
                 <div class='flex flex-col gap-4 h-full  '>
                     <div v-for="(message, index) in chatHistory" :key="index">
-                        <div :class="{ 'human-message-container': message.type === 'Human' }">
+                        <div :class="{ 'human-message-container': message.type === 0 }">
                             <div class="max-w-3xl mx-auto flex gap-4 items-start">
 
                                 <div class="h-10 w-10 flex-shrink-0 items-center mb-1 rounded"
-                                    :class="{ 'human-message': message.type === 'Human', 'ai-message': message.type === 'Ai' }">
+                                    :class="{ 'human-message': message.type === 0, 'ai-message': message.type === 1 }">
                                 </div>
                                 <!-- <p class="leading-7  font-semibold mt-1 whitespace-pre-line " v-html="message.content"> </p> -->
                                 <!-- <vue-markdown class="font-semibold leading-7 " :source="message.content" /> -->

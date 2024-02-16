@@ -95,3 +95,4 @@ _ide_helper_models.php
 !modules/.gitkeep
 .laravelstatsrc
 .DS_Store
+/modules/ChatGpt/node_modules

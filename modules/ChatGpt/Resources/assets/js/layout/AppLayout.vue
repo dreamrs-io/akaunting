@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+      <topbar></topbar>
       <sidebar></sidebar>
       <welcome v-if="isWelcome"></welcome>
       <chat v-else></chat>
@@ -8,6 +8,7 @@
   </div>
 </template>
 <script>
+import TopBar from '../components/TopBar.vue';
 import SideBar from '../components/SideBar.vue';
 import ChatContainer from '../components/ChatContainer.vue';
 import Welcome from '../components/Welcome.vue';
@@ -19,6 +20,7 @@ import Welcome from '../components/Welcome.vue';
 export default {
   props:['userChatToken'],
   components: {
+    'topbar': TopBar,
     'sidebar': SideBar,
     'chat': ChatContainer,
     'welcome': Welcome

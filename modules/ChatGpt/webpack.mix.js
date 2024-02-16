@@ -12,9 +12,9 @@ const mix = require('laravel-mix');
  */
 
 mix.options({
-        terser: {
-            extractComments: false,
-        }
-    })
+    terser: {
+        extractComments: false,
+    }
+})
     .js('Resources/assets/js/chat-gpt.js', 'Resources/assets/js/chat-gpt.min.js')
     .vue();

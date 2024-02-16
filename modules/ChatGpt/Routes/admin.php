@@ -15,10 +15,11 @@ Route::admin('chat-gpt', function () {
     Route::group(['prefix' => 'main', 'as' => 'main.'], function () {
         Route::resource('/', 'Main');
 
-        // Route::get('detail/{id}', 'Main@detail')->name('detail');
-        // Route::get('list', 'Main@getList')->name('list');
-        // Route::post('send', 'Main@send')->name('send');
-        // Route::post('call-gpt', 'Main@callGpt')->name('call-gpt');
-        // Route::delete('delete', 'Settings@destroy')->name('delete');
+        Route::get('detail/{id}', 'Main@detail')->name('detail');
+        Route::get('list', 'Main@getList')->name('list');
+        Route::post('send', 'Main@send')->name('send');
+        Route::post('call-gpt', 'Main@callGpt')->name('call-gpt');
+        Route::any('call-gpt-streamed', 'Main@callGptStreamed')->name('call-gpt-streamed');
+        Route::delete('delete', 'Main@deleteChat')->name('delete');
     });
 });

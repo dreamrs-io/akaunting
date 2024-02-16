@@ -11,7 +11,7 @@ export default new Vuex.Store({
     chatListLoading: true,
     chatHistory: [],
     chatHistoryLoading: false,
-    currentChatId: '',
+    currentChatId: 0,
     aiResponseLoading:false,
 
 
@@ -65,7 +65,7 @@ export default new Vuex.Store({
       state.welcome = true;
       state.chatHistory = [];
       state.chatHistoryLoading = false;
-      state.currentChatId = '';
+      state.currentChatId = 0;
       state.aiResponseLoading = false;
     }
     },
@@ -73,7 +73,7 @@ export default new Vuex.Store({
     async fetchChatList({ commit }) {
       commit('setChatListLoading', true)
       const res = await getChatList();
-      commit('setChatList', res.chats)
+      commit('setChatList', res)
       commit('setChatListLoading', false)
     },
     async fetchChatHistory({ commit },chatId) {
@@ -83,32 +83,54 @@ export default new Vuex.Store({
       commit('setChatHistoryLoading', true)
       commit('setCurrentChatId',chatId)
       const res = await getChatHistory(chatId);
-      commit('setChatHistory', res.chatHistory[0].messages)
+      commit('setChatHistory', res)
+      // commit('setChatHistory', res.chatHistory[0].messages)
       commit('setChatHistoryLoading', false)
     },
-    async sendNewChat({commit}){
+    async sendNewChat({commit}, payload){
       commit('setWelcome', false);
-      let  chatHistory = [ 
-            {
-              "type": "Human",
-              "content": this.state.chatInput,
-            }
-        ]
+      let chatHistory = this.state.chatHistory;
+
+      chatHistory.push({
+        "type": 0, //"Human",
+        "content": this.state.chatInput,
+      });
       commit('setChatHistory',chatHistory)
       commit('setAiResponseLoading',true)
-      let input =  this.state.chatInput
+      let content =  this.state.chatInput
       commit('setChatInput','')
-      const res = await sendMessage(input)
-      commit('setChatHistory', res.chatHistory.messages)
-      commit('appendChatList',[res.chatHistory])
-      commit('setCurrentChatId',res.chatHistory._id)
+      const res = await sendMessage(this.state.currentChatId, content)
+      const resData = res.data
+      console.log('sendNewChat.resData', resData)
+      if (res.success && resData !== null) {
+        chatHistory.push(
+          {
+            "type": 1,//"Ai",
+            "content": resData.content,
+          }
+        )
+        if (resData?.parent !== null) {
+          commit('appendChatList', [resData.parent])
+        }
+        const chatId = resData.parent_id > 0 ? resData.parent_id : resData.id;
+        commit('setCurrentChatId', chatId)
+      } else {
+        chatHistory.push(
+          {
+            "type": 1,//"Ai",
+            "content": res.message,
+          }
+        )
+      }
+      commit('setChatHistory', chatHistory)
       commit('setAiResponseLoading',false)
     },
+
     async sendChat({commit}){
       commit('setWelcome', false);
       let  chatHistory = [ 
         {
-          "type": "Human",
+          "type": 0,//"Human",
           "content": this.state.chatInput,
         }
     ]
@@ -119,7 +141,7 @@ export default new Vuex.Store({
       const res = await updateChat(this.state.currentChatId,input)
       chatHistory = [
         {
-          "type": "Ai",
+          "type": 1,//"Ai",
           "content": res.message,
         }
       ]
@@ -128,7 +150,9 @@ export default new Vuex.Store({
     },
     async deleteChat({commit},chatId){
       await delChat(chatId);
-      commit('newChat');
+      if (chatId === this.state.currentChatId) {
+        commit('newChat');
+      }
       commit('removeChatList',chatId);
       commit('setWelcome', true);
     }

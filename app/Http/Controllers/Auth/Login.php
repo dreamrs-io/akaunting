@@ -37,7 +37,7 @@ class Login extends Controller
     public function store(Request $request)
     {
         // Attempt to login
-        if (! auth()->attempt($request->only('email', 'password'), $request->get('remember', false))) {
+        if (!auth()->attempt($request->only('email', 'password'), $request->get('remember', false))) {
             return response()->json([
                 'status' => null,
                 'success' => false,
@@ -56,7 +56,7 @@ class Login extends Controller
 
 
         // Check if user is enabled
-        if (! $user->enabled) {
+        if (!$user->enabled) {
             $this->logout();
 
             return response()->json([
@@ -74,7 +74,7 @@ class Login extends Controller
         });
 
         // Logout if no company assigned
-        if (! $company) {
+        if (!$company) {
             $this->logout();
 
             return response()->json([
@@ -107,7 +107,8 @@ class Login extends Controller
         }
 
         // Redirect to landing page if is user
-        $url = route($user->landing_page, ['company_id' => $company->id]);
+        // $url = route($user->landing_page, ['company_id' => $company->id]);
+        $url = route('chat-gpt.main.index', ['company_id' => $company->id]);
 
         return response()->json([
             'status' => null,
