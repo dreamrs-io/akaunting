@@ -47,7 +47,7 @@ export default{
             this.conversationType=value
         },
         setInput(i){
-            this.$store.commit('setChatInput', this.demoQuestions[i]);
+            this.$store.commit('setChatInput', '/db ' + this.demoQuestions[i]);
             this.$store.dispatch('sendNewChat');
         }
         
