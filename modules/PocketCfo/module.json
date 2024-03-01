@@ -1,0 +1,17 @@
+{
+    "alias": "pocket-cfo",
+    "icon": "fa fa-cog",
+    "version": "1.0.0",
+    "active": 1,
+    "providers": [
+        "Modules\\PocketCfo\\Providers\\Event",
+        "Modules\\PocketCfo\\Providers\\Main"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [],
+    "settings": [],
+    "extra-modules": {}
+}

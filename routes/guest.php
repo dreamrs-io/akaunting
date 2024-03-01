@@ -25,5 +25,7 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::get('/', function () {
+
+    // return redirect()->route('landing');
     return redirect()->route('login');
 });
