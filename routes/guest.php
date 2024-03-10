@@ -24,6 +24,9 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('register', 'Auth\Register@store')->name('register.store');
 });
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+// Route::get('/', function () {
+//     // return redirect('welcome/home');
+//     // Route::get('/w', 'Landing\Main@index')->name('home'); 
+// });
+Route::get('/', 'Landing\Main@index');
+Route::get('{page}', 'Landing\Main@index')->where('page', 'services');

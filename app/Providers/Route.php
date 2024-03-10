@@ -130,6 +130,8 @@ class Route extends Provider
 
         $this->mapGuestRoutes();
 
+        $this->mapLandingRoutes();
+
         $this->mapWizardRoutes();
 
         $this->mapAdminRoutes();
@@ -199,6 +201,19 @@ class Route extends Provider
         Facade::middleware('guest')
             ->namespace($this->namespace)
             ->group(base_path('routes/guest.php'));
+    }
+    /**
+     * Define the "landing pages" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapLandingRoutes()
+    {
+        Facade::middleware('guest')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/landing.php'));
     }
 
     /**
