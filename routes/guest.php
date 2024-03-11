@@ -28,5 +28,5 @@ Route::group(['prefix' => 'auth'], function () {
 //     // return redirect('welcome/home');
 //     // Route::get('/w', 'Landing\Main@index')->name('home'); 
 // });
-Route::get('/', 'Landing\Main@index');
-Route::get('{page}', 'Landing\Main@index')->where('page', 'services');
+
+include base_path('routes/landing.php');
