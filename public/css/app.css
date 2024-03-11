@@ -67408,6 +67408,10 @@ body{
   visibility: visible;
 }
 
+.group:hover .group-hover\:visible{
+  visibility: visible;
+}
+
 .group\/actions:hover .group-hover\/actions\:flex{
   display: -webkit-box;
   display: -ms-flexbox;
@@ -67422,6 +67426,26 @@ body{
 
 .group:hover .group-hover\:hidden{
   display: none;
+}
+
+.group:hover .group-hover\:h-\[60vh\]{
+  height: 60vh;
+}
+
+.group\/x:hover .group-hover\/x\:h-\[60vh\]{
+  height: 60vh;
+}
+
+.group\/z:hover .group-hover\/z\:h-\[60vh\]{
+  height: 60vh;
+}
+
+.group\/z:hover .group-hover\/z\:h-\[30vh\]{
+  height: 30vh;
+}
+
+.group:hover .group-hover\:w-full{
+  width: 100%;
 }
 
 .group:hover .group-hover\:translate-x-1{
@@ -67485,6 +67509,11 @@ body{
 }
 
 .group:hover .group-hover\:text-white{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.group\/x:hover .group-hover\/x\:text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }

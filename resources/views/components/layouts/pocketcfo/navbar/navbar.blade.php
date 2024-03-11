@@ -7,10 +7,36 @@
          </a>
          <ul class="flex gap-4 ml-2 ">
             <li class="">
-               <div>
-                  <div class="inline-block text-left" data-headlessui-state="">
+               <div class="group/z cursor-pointer">
+                  <div class='group-hover/z:h-[30vh]  fixed top-10 left-0 w-full  h-0 overflow-hidden   transition-all duration-500 z-10 bg-white '>
+
+                     <div class="border-t bg-white">
+                        <div class="max-w-7xl mx-auto my-10 p-2 lg:p-6">
+                           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                              @foreach(config('static-data.tools') as $tool)
+                              <div>
+                                 <p class="text-sm ml-2 mb-2 text-gray-400"> {{$tool['title'] }}</p>
+                                 @foreach($tool['tools'] as $subTool)
+                                 <a class="gap-1 flex cursor-pointer items-center hover:bg-red-600 justify-start p-2 rounded-sm group" href="/home/tools/{{$tool['category']}}/{{$subTool['page']['url']}}">
+                                    {!! $subTool['icon'] !!}
+                                    <p class="text-sm font-bold group-hover:text-white">
+                                       {{ $subTool['name'] }}
+                                    </p>
+                                 </a>
+                                 @endforeach
+                              </div>
+                              @endforeach
+
+
+                           </div>
+                        </div>
+                     </div>
+
+
+                  </div>
+                  <div class="inline-block text-left">
                      <div>
-                        <button class="link flex items-center gap-[2px] " id="headlessui-menu-button-:R1ikm:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
+                        <a class="link flex items-center gap-[2px]">
                            <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                               <path d="M4 4H8V8H4V4Z" fill="currentColor"></path>
                               <path d="M4 10H8V14H4V10Z" fill="currentColor"></path>
@@ -23,7 +49,7 @@
                               <path d="M20 16H16V20H20V16Z" fill="currentColor"></path>
                            </svg>
                            <p class=" hidden sm:block">Tools</p>
-                        </button>
+                        </a>
                      </div>
                   </div>
                </div>
