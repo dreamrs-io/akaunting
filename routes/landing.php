@@ -18,3 +18,12 @@ Route::group(['prefix' => 'home'], function () {
 
 
 
+Route::group(['prefix'=>'pocketcfo/api'],function(){
+    Route::get('/',function(){
+
+        return response('dasd');
+    
+    });
+
+});
+

@@ -10,8 +10,10 @@ use App\Jobs\Auth\DeleteUser;
 use App\Jobs\Auth\UpdateUser;
 use App\Models\Auth\User;
 
+
 class Users extends ApiController
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -56,6 +58,8 @@ class Users extends ApiController
      */
     public function store(Request $request)
     {
+        // dd($request);
+       
         $user = $this->dispatch(new CreateUser($request));
 
         return $this->created(route('api.users.show', $user->id), new Resource($user));
