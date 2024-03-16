@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
             'session.start',
             // 'session.auth',
             'session.errors',
-            'csrf',
+            // 'csrf',
             'install.redirect',
             'header.x',
             'language',
