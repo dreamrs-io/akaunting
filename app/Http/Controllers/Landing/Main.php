@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Abstracts\Http\Controller;
-use App\Jobs\Auth\CreateUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Crypt;
 
 class Main extends Controller
 
 {
 
-    
-/**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -22,48 +19,27 @@ class Main extends Controller
     {
         $this->middleware('guest', ['except' => 'destroy']);
     }
-    public function index(){
+    public function index(Request $request)
+    {
 
-        return view('landing.home.index');
-    }
-    public function tools(){
+        if ($request->has('token')) {
 
-        return view('landing.tools.index');
-    }
-    public function toolsCat($category){
 
-        $items = config('static-data.tools');
+            $aaa=Crypt::encrypt('HI');
+            $d  =Crypt::decrypt($aaa);
+            $nodejsString = 'eyJpdiI6IjNCdVJlMkNySGhyRm45bmEybVVIS3c9PSIsInZhbHVlIjoieE9NelFZUXVHd3QvbHVYZ2tBZmZobzZFcVdXUVF1QVNJNGc3OFVMNmxmVT0iLCJtYWMiOiI5Y2VhN2YzMjgwNzc5ZjQ0NjBkMDI0MjYyYjBlZTFjYjUwOTVlYWQ2M2JhMGVkMjdiNjA2MzU2Mzc0MzUyOGRmIn0=';
+            $dnodejs=Crypt::decryptString($nodejsString);
 
-        $foundTools = Arr::first($items, function ($item) use ($category) {
-            return $item['category'] === $category;
-        });
+           return response([
+            'TEXT TO BE ENCRYPTED' => $d,
+            'ENCRYPTED BY LARAVEL' => $aaa,
+            'ENCRYPTED BY NODE JS' => $nodejsString,
+            'DECRYPTING THE LARAVEL STRING' =>$d,
+            'DECRYPTING THE NODEJS STRING' =>$dnodejs,
+           ],200);
+           
 
-        if ($foundTools == null){
-            abort(404);
         }
-
-        return view('landing.tools.category.index');
-    }
-
-    public function toolShow($category, $name){
-
-        // $items = config('static-data.tools');
-
-        // $foundTools = Arr::first($items, function ($item) use ($category) {
-        //     return $item['category'] === $category;
-        // });
-
-        // if ($foundTools == null){
-        //     abort(404);
-        // }
-
-
-        return view('landing.tools.category.show');
-    }
-
-    public function register(Request $request){
-        
-        $user = dispatch(new CreateUser($request));
-
+        // return response('dddd', 200);
     }
 }
