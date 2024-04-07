@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'api.'], function () {
     // Ping
-    Route::get('ping', 'Common\Ping@pong')->name('ping');
+    Route::get('ping', 'Common\Ping@pong')->name('ping'); 
 
     // Users
     Route::get('users/{user}/enable', 'Auth\Users@enable')->name('users.enable');

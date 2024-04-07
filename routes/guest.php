@@ -22,8 +22,12 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::get('register/{token}', 'Auth\Register@create')->name('register');
     Route::post('register', 'Auth\Register@store')->name('register.store');
+
+    include base_path('routes/landing.php');
 });
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+// include base_path('routes/landing.php');

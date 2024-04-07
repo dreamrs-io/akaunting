@@ -11,20 +11,20 @@ use App\Interfaces\Job\ShouldCreate;
 use App\Models\Auth\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class CreateUser extends Job implements HasOwner, HasSource, ShouldCreate
 {
     public function handle(): User
     {
+        
         event(new UserCreating($this->request));
 
         \DB::transaction(function () {
             if (empty($this->request->get('password', false))) {
                 $this->request->merge(['password' => Str::random(40)]);
             }
-
             $this->model = User::create($this->request->input());
-
             // Upload picture
             if ($this->request->file('picture')) {
                 $media = $this->getMedia($this->request->file('picture'), 'users');
@@ -71,9 +71,9 @@ class CreateUser extends Job implements HasOwner, HasSource, ShouldCreate
                 ]);
             }
 
-            if ($this->shouldSendInvitation()) {
-                $this->dispatch(new CreateInvitation($this->model));
-            }
+            // if ($this->shouldSendInvitation()) {
+            //     $this->dispatch(new CreateInvitation($this->model));
+            // }
         });
 
         event(new UserCreated($this->model, $this->request));

@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\RedirectHome::class,
     ];
 
     /**
@@ -35,7 +36,7 @@ class Kernel extends HttpKernel
             'session.start',
             // 'session.auth',
             'session.errors',
-            'csrf',
+            // 'csrf',
             'install.redirect',
             'header.x',
             'language',

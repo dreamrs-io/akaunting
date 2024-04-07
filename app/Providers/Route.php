@@ -200,6 +200,7 @@ class Route extends Provider
             ->namespace($this->namespace)
             ->group(base_path('routes/guest.php'));
     }
+   
 
     /**
      * Define the "wizard" routes for the application.
