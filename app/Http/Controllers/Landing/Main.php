@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Abstracts\Http\Controller;
+use App\Models\Auth\User;
+use App\Providers\Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -60,13 +62,12 @@ class Main extends Controller
         }
 
 
+      
 
+        $user = User::where('email', $token->email)->first();
 
-        // Attempt to login
-        if (!auth()->attempt([
-            "email" => $token->email,
-            "password" => $token->password,
-        ], false)) {
+        if (!$user) {
+            // User does not exist
             return response()->json([
                 'status' => null,
                 'success' => false,
@@ -76,9 +77,9 @@ class Main extends Controller
                 'redirect' => null,
             ]);
         }
-
-        // Get user object
-        $user = user();
+        
+        // Log in the user
+        auth()->login($user);
 
         // Setting Password In Session 
         // Session::put('password', $request->password);
