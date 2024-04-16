@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Landing;
+namespace App\Http\Controllers\Pocketcfo;
 
 use App\Abstracts\Http\Controller;
 use App\Models\Auth\User;
@@ -27,17 +27,27 @@ class Main extends Controller
     public function index(Request $request)
     {
         if (!$request->has('token')) {
+            return redirect()->route('login');
+         }
+
+        $token = json_decode(Crypt::decryptString($request->token));
+
+
+        try {
+            $token = json_decode(Crypt::decryptString($token));
+        } catch (\Throwable $th) {
             return response()->json([
-                'status' => null,
-                'success' => false,
-                'error' => true,
-                'message' => 'No Token provided',
-                'data' => null,
-                'redirect' => null,
+                'message' => "Invalid Token",
             ]);
         }
 
-        $token = json_decode(Crypt::decryptString($request->token));
+        $domain =   parse_url(env('APP_URL'))['host'];
+        
+        if($token->domain!=$domain){
+            return response()->json([
+                'message' => "Invalid Token Domain",
+            ]);
+        }
 
 
         $tokenTimestamp = Carbon::createFromTimestampMs($token->timestamp);
@@ -48,7 +58,7 @@ class Main extends Controller
 
         $timeDifferenceString = $tokenTimestamp->diffForHumans($currentTimestamp);
 
-        // dd([$tokenTimestamp,$currentTimestamp,$timeDifferenceMinutes]);
+        dd([$tokenTimestamp,$currentTimestamp,$timeDifferenceMinutes]);
 
         if ($timeDifferenceMinutes > 10) {
             return response()->json([

@@ -30,4 +30,4 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// include base_path('routes/landing.php');
+include base_path('routes/webhook.php');
