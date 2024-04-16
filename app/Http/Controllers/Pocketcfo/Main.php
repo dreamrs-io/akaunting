@@ -30,20 +30,22 @@ class Main extends Controller
             return redirect()->route('login');
          }
 
-        $token = json_decode(Crypt::decryptString($request->token));
+       
 
 
         try {
-            $token = json_decode(Crypt::decryptString($token));
+            $token = json_decode(Crypt::decryptString($request->token));
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => "Invalid Token",
+                'message' => $th,
             ]);
         }
 
-        $domain =   parse_url(env('APP_URL'))['host'];
+        $appDomain =   parse_url(env('APP_URL'))['host'];
+        $tokenDomain =   parse_url($token->domain)['host'];
+
         
-        if($token->domain!=$domain){
+        if($appDomain != $tokenDomain){
             return response()->json([
                 'message' => "Invalid Token Domain",
             ]);
@@ -58,9 +60,8 @@ class Main extends Controller
 
         $timeDifferenceString = $tokenTimestamp->diffForHumans($currentTimestamp);
 
-        dd([$tokenTimestamp,$currentTimestamp,$timeDifferenceMinutes]);
 
-        if ($timeDifferenceMinutes > 10) {
+        if ($timeDifferenceMinutes > 1) {
             return response()->json([
                 'status' => null,
                 'success' => false,
