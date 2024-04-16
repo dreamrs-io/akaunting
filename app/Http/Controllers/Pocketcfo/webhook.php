@@ -64,17 +64,24 @@ class webhook extends Controller
 
             Artisan::call('up');
 
+            return response()->json([
+                'message' => 'Webhook event received application enabled',
+            ], 200);
+
         } else {
 
             Artisan::call('down', [
                 '--status' => '402',
 
             ]);
+            return response()->json([
+                'message' => 'Webhook event received application disabled',
+            ], 200);
 
         }
       
         return response()->json([
-            'message' => 'Webhook event received successfully',
+            'message' => 'Webhook event received no action performed',
         ], 200);
     }
 }
